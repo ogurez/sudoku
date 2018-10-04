@@ -1,7 +1,5 @@
 module.exports = function solveSudoku(matrix) {
 
-  const numbers=[1,2,3,4,5,6,7,8,9];
-
   let zeros=[];
 
   for(let i = 0; i<matrix.length; i++){
@@ -71,14 +69,14 @@ module.exports = function solveSudoku(matrix) {
   let max = 9;
   let number = 0;
 
-  for(let i = 0; i<zeros.length; i++){
+  for(let i = 0; i<zeros.length;){
     number = matrix[zeros[i][0]][zeros[i][1]]+1;
     found = false;
 
     while(!found && number<=max){
-      if(checkAll(matrix,zeros[i][1],zeros[i][0],number)){
+      if(checkAll(matrix, zeros[i][1], zeros[i][0], number)){
         found = true;
-        matrix[zeros[i][0]][zeros[i][1]]=number;
+        matrix[zeros[i][0]][zeros[i][1]] = number;
         i++;
       }
       else{
@@ -87,7 +85,7 @@ module.exports = function solveSudoku(matrix) {
     }
 
     if(!found){
-      matrix[zeros[i][0]][zeros[i][1]]=0;
+      matrix[zeros[i][0]][zeros[i][1]] = 0;
       i--;
     }
   }
